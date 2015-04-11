@@ -32,7 +32,7 @@ namespace Snake
             GAMEOVER,
             RUNNING
         }
-        public states currentState;
+        public static states currentState;
         
 
         public Settings()
@@ -43,7 +43,7 @@ namespace Snake
             Score = 0;
             Points = 100;
             direction = Direction.Down;
-            eatSound = Resources.eat;
+            eatSound = Properties.Resources.eat;
             snakeBodyColour = Color.FromArgb(0);
             playerVolume = 60;
             currentState = states.PAUSED;

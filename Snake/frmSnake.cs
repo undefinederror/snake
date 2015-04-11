@@ -104,8 +104,7 @@ namespace Snake
         private void UpdateScreen(object sender, EventArgs args)
         { 
             // check for game over
-            if (Settings.
-                )
+            if (Settings.currentState==Settings.states.GAMEOVER)
             {
                 // check if enter is pressed
                 if (Input.KeyPressed(Keys.Enter))
@@ -114,10 +113,14 @@ namespace Snake
                     StartGame();
                 }
             }
-            else {
-               
+            else if (Settings.currentState == Settings.states.PAUSED)
+            {
+                frmSplash._frmSnake.Hide();
+                frmSplash.sho
+            }
+            else
+            {
                 MoveSnake();
-            
             }
 
             pbCanvas.Invalidate();
@@ -128,7 +131,7 @@ namespace Snake
         {
             Graphics canvas = e.Graphics;
 
-            if (Settings.GameOver == false)
+            if (Settings.currentState == Settings.states.RUNNING )
             {
                 // set colour of snake
                 Color snakeColour;
@@ -240,9 +243,8 @@ namespace Snake
         // die method
         private void Die()
         {
-            Settings.GameOver = true;
+            Settings.currentState = Settings.states.GAMEOVER;
         }
-
         // update score
         private void UpdateScore()
         {

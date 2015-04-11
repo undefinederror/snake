@@ -14,7 +14,7 @@ namespace Snake
     public partial class frmSplash : Form
     {
 
-        public Form _frmSnake = new frmSnake();
+        public static Form _frmSnake = new frmSnake();
         public frmSplash()
         {
             InitializeComponent();
@@ -24,7 +24,7 @@ namespace Snake
         private void btnStartGame_Click(object sender, EventArgs e)
         {
             _frmSnake.ShowDialog();
-            Settings.states =  states
+            Settings.currentState = Settings.states.RUNNING;
             
 
         }
