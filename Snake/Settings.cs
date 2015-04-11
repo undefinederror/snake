@@ -15,7 +15,7 @@ namespace Snake
         Left,
         Right
     }
-    class Settings
+    public class Settings
     {
         public static int Width { get; set; }
         public static int Height { get; set; }
@@ -43,10 +43,10 @@ namespace Snake
             Score = 0;
             Points = 100;
             direction = Direction.Down;
-            eatSound = Properties.Resources.eat;
+            eatSound = Resources.eat;
             snakeBodyColour = Color.FromArgb(0);
             playerVolume = 60;
-            currentState = states.RUNNING;
+            currentState = states.PAUSED;
 
         }
 

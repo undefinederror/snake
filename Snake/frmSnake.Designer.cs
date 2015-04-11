@@ -81,7 +81,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(793, 496);
+            this.ClientSize = new System.Drawing.Size(880, 496);
             this.Controls.Add(this.lblGameOver);
             this.Controls.Add(this.lblScoreVal);
             this.Controls.Add(this.lblScoreTxt);
