@@ -23,15 +23,15 @@ namespace Snake
 
         private void btnStartGame_Click(object sender, EventArgs e)
         {
-            _frmSnake.ShowDialog();
             Settings.currentState = Settings.states.RUNNING;
+            _frmSnake.ShowDialog();
+            
             
 
         }
-
         private void frmSplash_Load(object sender, EventArgs e)
-        {
-        
+        { 
         }
+               
     }
 }

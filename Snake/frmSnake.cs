@@ -13,7 +13,7 @@ namespace Snake
 {
     public partial class frmSnake : Form
     {
-        private List<Circle> Snake = new List<Circle>();
+        private List<Circle> Snake = new List<Circle>();//fdsafd
         private Circle food = new Circle();
         private Circle head = new Circle();
         private bool eaten = false;
@@ -116,7 +116,7 @@ namespace Snake
             else if (Settings.currentState == Settings.states.PAUSED)
             {
                 frmSplash._frmSnake.Hide();
-                frmSplash.sho
+                frmSplash.ActiveForm.Show();
             }
             else
             {
@@ -318,6 +318,12 @@ namespace Snake
                         Settings.direction = Direction.Down;
                     };
                     break;
+                case Keys.P : 
+                case Keys.Escape:
+                    if(Settings.currentState == Settings.states.RUNNING){
+                        Settings.currentState = Settings.states.PAUSED;    
+                    }
+                break;
             }
         }           
             
