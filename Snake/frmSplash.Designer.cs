@@ -44,7 +44,7 @@
             // 
             // btnStartGame
             // 
-            this.btnStartGame.Location = new System.Drawing.Point(895, 12);
+            this.btnStartGame.Location = new System.Drawing.Point(12, 12);
             this.btnStartGame.Name = "btnStartGame";
             this.btnStartGame.Size = new System.Drawing.Size(75, 23);
             this.btnStartGame.TabIndex = 1;
@@ -56,7 +56,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(975, 501);
+            this.ClientSize = new System.Drawing.Size(888, 501);
             this.Controls.Add(this.btnStartGame);
             this.Controls.Add(this.picSplash);
             this.Name = "frmSplash";

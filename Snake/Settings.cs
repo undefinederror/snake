@@ -27,13 +27,14 @@ namespace Snake
         public static Color snakeBodyColour { get; set; }
         public static Color backgroundColour { get; set; }
         public static int playerVolume { get; set; }
+        public static IReadOnlyDictionary<string, string> msg;
         public enum states{
             PAUSED,
             GAMEOVER,
             RUNNING
         }
         public static states currentState;
-        
+        private static Array arrStates = Enum.GetValues(typeof(states));
 
         public Settings()
         {
@@ -42,11 +43,23 @@ namespace Snake
             Speed = 16;
             Score = 0;
             Points = 100;
-            direction = Direction.Down;
+            direction = (Direction)arrStates.GetValue(new Random().Next(arrStates.Length));
             eatSound = Properties.Resources.eat;
             snakeBodyColour = Color.FromArgb(0);
-            playerVolume = 60;
+            playerVolume = 0;
             currentState = states.PAUSED;
+            msg = new Dictionary<string, string>{
+                {
+                    "GAMEOVER",
+                    "Game over.\n" +
+                    "Your final score is: {0} \n" +
+                    "Hit {{ENTER}} to try again"},
+                {
+                    "PAUSED",
+                    "Game is paused. \n" +
+                    "Enjoy your beer."
+                }
+            };
 
         }
 

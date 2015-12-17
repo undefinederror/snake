@@ -26,7 +26,14 @@ namespace Snake
         public frmSnake()
         {
             InitializeComponent();
+            gameTimer.Tick += UpdateScreen;
+            
+            StartGame();
 
+        }
+
+        public void StartGame()
+        {
             // set settings to default
             new Settings();
 
@@ -41,27 +48,25 @@ namespace Snake
 
             // set game speed and start timer
             gameTimer.Interval = 1000 / Settings.Speed;
-            gameTimer.Tick += UpdateScreen;
-            gameTimer.Start();
-
-            // start new game
-            StartGame();
-
-
-        }
-
-        private void StartGame()
-        {
-            lblGameOver.Visible = false;
-            // set settings to default
+            
            
             Snake.Clear();
-            head.X = 10;
-            head.Y = 5;
+            head.X = (int)maxXPos / 2;
+            head.Y = (int)maxYPos / 2;
             Snake.Add(head);
 
             lblScoreVal.Text = Settings.Score.ToString();
             GenerateFood();
+
+            ResumeGame();
+        }
+        private void ResumeGame() {
+            this.Focus();
+            lblGameOver.Visible = false;
+            Settings.currentState = Settings.states.RUNNING;
+            gameTimer.Start();
+            
+            
         }
 
         // place random food objects
@@ -107,23 +112,20 @@ namespace Snake
             if (Settings.currentState==Settings.states.GAMEOVER)
             {
                 // check if enter is pressed
-                if (Input.KeyPressed(Keys.Enter))
-                {
-
-                    StartGame();
-                }
+                
             }
             else if (Settings.currentState == Settings.states.PAUSED)
             {
-                frmSplash._frmSnake.Hide();
-                frmSplash.ActiveForm.Show();
+                //frmSplash._frmSnake.Hide();
+                //frmSplash.ActiveForm.Show();
             }
             else
             {
                 MoveSnake();
+                pbCanvas.Invalidate();
             }
 
-            pbCanvas.Invalidate();
+            
         
         }
 
@@ -165,16 +167,7 @@ namespace Snake
                                     );
                 }
             }
-            else
-            {
-                string gameOver = "Game over.\n" +
-                    "Your final score is: " + Settings.Score + "\n" +
-                    "Enter to try again";
-
-                lblGameOver.Text = gameOver;
-                lblGameOver.Visible = true;
-            
-            }
+           
         }
 
         private void MoveSnake()
@@ -243,7 +236,16 @@ namespace Snake
         // die method
         private void Die()
         {
+            gameTimer.Stop();
             Settings.currentState = Settings.states.GAMEOVER;
+            showMsg(Settings.states.GAMEOVER);
+        }
+        // pause method
+        private void Pause() 
+        {
+            gameTimer.Stop();
+            Settings.currentState = Settings.states.PAUSED;
+            showMsg(Settings.states.PAUSED);
         }
         // update score
         private void UpdateScore()
@@ -292,41 +294,72 @@ namespace Snake
 
         private void frmSnake_KeyDown(object sender, KeyEventArgs e)
         {
-            switch(e.KeyCode)
-            {
-                case Keys.Right:
-                    if(Settings.direction != Direction.Left)
-                    {
-                        Settings.direction = Direction.Right;
-                    };
-                    break;
-                case Keys.Left:
-                    if(Settings.direction != Direction.Right)
-                    {
-                        Settings.direction = Direction.Left;
-                    };
-                    break;
-                case Keys.Up:
-                    if(Settings.direction != Direction.Down)
-                    {
-                        Settings.direction = Direction.Up;
-                    };
-                    break;
-                case Keys.Down:
-                    if(Settings.direction != Direction.Up)
-                    {
-                        Settings.direction = Direction.Down;
-                    };
-                    break;
-                case Keys.P : 
-                case Keys.Escape:
-                    if(Settings.currentState == Settings.states.RUNNING){
-                        Settings.currentState = Settings.states.PAUSED;    
-                    }
-                break;
+            if (Settings.currentState == Settings.states.RUNNING) { 
+                switch(e.KeyCode)
+                {
+                    case Keys.Right:
+                        if(Settings.direction != Direction.Left)
+                        {
+                            Settings.direction = Direction.Right;
+                        };
+                        break;
+                    case Keys.Left:
+                        if(Settings.direction != Direction.Right)
+                        {
+                            Settings.direction = Direction.Left;
+                        };
+                        break;
+                    case Keys.Up:
+                        if(Settings.direction != Direction.Down)
+                        {
+                            Settings.direction = Direction.Up;
+                        };
+                        break;
+                    case Keys.Down:
+                        if(Settings.direction != Direction.Up)
+                        {
+                            Settings.direction = Direction.Down;
+                        };
+                        break;
+                    case Keys.P : 
+                    case Keys.Escape:
+                        if(Settings.currentState == Settings.states.RUNNING){
+                            Pause();
+                        }
+                        break;
+                }
             }
-        }           
-            
+            else{
+                switch(e.KeyCode){
+                    case Keys.P:
+                    case Keys.Escape:
+                        if (Settings.currentState == Settings.states.PAUSED)
+                        {
+                            ResumeGame();
+                        };
+                        break;
+                    case Keys.Enter:
+                        if (Settings.currentState == Settings.states.GAMEOVER)
+                        {
+                            StartGame();
+                        }
+                        break;
+                }
+            }
+        }
+        private void showMsg(Settings.states type) { 
+            switch(type){
+                case Settings.states.GAMEOVER:
+                    lblGameOver.Text = string.Format(Settings.msg["GAMEOVER"],Settings.Score.ToString());
+                    break;
+                case Settings.states.PAUSED:
+                    lblGameOver.Text = Settings.msg["PAUSED"];
+                    break;
+            }
+
+                lblGameOver.Visible = true;
+        }
+
         private void frmSnake_KeyUp(object sender, KeyEventArgs e)
         {
         }
