@@ -28,19 +28,11 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.picSplash = new System.Windows.Forms.PictureBox();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmSplash));
             this.btnStartGame = new System.Windows.Forms.Button();
+            this.picSplash = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.picSplash)).BeginInit();
             this.SuspendLayout();
-            // 
-            // picSplash
-            // 
-            this.picSplash.Image = global::Snake.Properties.Resources.snakebg;
-            this.picSplash.Location = new System.Drawing.Point(0, 0);
-            this.picSplash.Name = "picSplash";
-            this.picSplash.Size = new System.Drawing.Size(889, 502);
-            this.picSplash.TabIndex = 0;
-            this.picSplash.TabStop = false;
             // 
             // btnStartGame
             // 
@@ -52,6 +44,15 @@
             this.btnStartGame.UseVisualStyleBackColor = true;
             this.btnStartGame.Click += new System.EventHandler(this.btnStartGame_Click);
             // 
+            // picSplash
+            // 
+            this.picSplash.Image = global::Snake.Properties.Resources.snakebg;
+            this.picSplash.Location = new System.Drawing.Point(0, 0);
+            this.picSplash.Name = "picSplash";
+            this.picSplash.Size = new System.Drawing.Size(889, 502);
+            this.picSplash.TabIndex = 0;
+            this.picSplash.TabStop = false;
+            // 
             // frmSplash
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -59,9 +60,11 @@
             this.ClientSize = new System.Drawing.Size(888, 501);
             this.Controls.Add(this.btnStartGame);
             this.Controls.Add(this.picSplash);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "frmSplash";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "frmSplash";
-            this.Load += new System.EventHandler(this.frmSplash_Load);
+            this.Shown += new System.EventHandler(this.frmSplash_Shown);
             ((System.ComponentModel.ISupportInitialize)(this.picSplash)).EndInit();
             this.ResumeLayout(false);
 

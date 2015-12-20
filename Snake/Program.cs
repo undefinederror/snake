@@ -11,14 +11,17 @@ namespace Snake
         /// <summary>
         /// The main entry point for the application.
         /// </summary>
+        static public frmSplash _frmSplash;
+        static public frmSnake _frmSnake;
         [STAThread]
         static void Main()
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new frmSplash());
-
+            _frmSplash = new frmSplash();
+            Application.Run(_frmSplash);
         }
+        
     }
 
 }

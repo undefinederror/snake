@@ -23,20 +23,16 @@ namespace Snake
 
         private void btnStartGame_Click(object sender, EventArgs e)
         {
-            //new Settings();
-            
-            Form _frmSnake = new frmSnake();
-            _frmSnake.Show();
-            _frmSnake.Activate();
-            
-            
-
-            
-            
-
+            Program._frmSnake = new frmSnake();
+            Program._frmSnake.Show();
         }
-        private void frmSplash_Load(object sender, EventArgs e)
-        { 
+        private void frmSplash_Shown(object sender, EventArgs e)
+        {
+            if (Program._frmSnake != null) 
+            { 
+            Program._frmSnake.Hide();
+            }
+
         }
                
     }

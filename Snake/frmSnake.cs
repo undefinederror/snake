@@ -28,7 +28,7 @@ namespace Snake
             InitializeComponent();
             gameTimer.Tick += UpdateScreen;
             
-            StartGame();
+            
 
         }
 
@@ -109,24 +109,11 @@ namespace Snake
         private void UpdateScreen(object sender, EventArgs args)
         { 
             // check for game over
-            if (Settings.currentState==Settings.states.GAMEOVER)
+            if (Settings.currentState==Settings.states.RUNNING)
             {
-                // check if enter is pressed
-                
-            }
-            else if (Settings.currentState == Settings.states.PAUSED)
-            {
-                //frmSplash._frmSnake.Hide();
-                //frmSplash.ActiveForm.Show();
-            }
-            else
-            {
-                MoveSnake();
                 pbCanvas.Invalidate();
+                MoveSnake();
             }
-
-            
-        
         }
 
         private void pbCanvas_Paint(object sender, PaintEventArgs e)
@@ -360,13 +347,17 @@ namespace Snake
                 lblGameOver.Visible = true;
         }
 
-        private void frmSnake_KeyUp(object sender, KeyEventArgs e)
+        private void frmSnake_FormClosed(object sender, FormClosedEventArgs e)
         {
+            Program._frmSplash.Show();
         }
 
-        private void frmSnake_Load(object sender, EventArgs e)
+        private void frmSnake_Shown(object sender, EventArgs e)
         {
-
+            Program._frmSplash.Hide();
+            StartGame();
         }
+
+        
     }
 }

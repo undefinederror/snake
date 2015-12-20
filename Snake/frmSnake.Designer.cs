@@ -29,68 +29,51 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            this.pbCanvas = new System.Windows.Forms.PictureBox();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmSnake));
             this.gameTimer = new System.Windows.Forms.Timer(this.components);
             this.lblScoreTxt = new System.Windows.Forms.Label();
             this.lblScoreVal = new System.Windows.Forms.Label();
             this.lblGameOver = new System.Windows.Forms.Label();
+            this.pbCanvas = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.pbCanvas)).BeginInit();
             this.SuspendLayout();
             // 
-            // pbCanvas
-            // 
-            this.pbCanvas.BackColor = System.Drawing.SystemColors.ControlDark;
-            this.pbCanvas.Location = new System.Drawing.Point(12, 12);
-            this.pbCanvas.Name = "pbCanvas";
-            this.pbCanvas.Size = new System.Drawing.Size(646, 454);
-            this.pbCanvas.TabIndex = 0;
-            this.pbCanvas.TabStop = false;
-            this.pbCanvas.Paint += new System.Windows.Forms.PaintEventHandler(this.pbCanvas_Paint);
-            // 
             // lblScoreTxt
             // 
-            this.lblScoreTxt.AutoSize = true;
-            this.lblScoreTxt.Font = new System.Drawing.Font("Microsoft Sans Serif", 26.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblScoreTxt.Location = new System.Drawing.Point(697, 26);
+            resources.ApplyResources(this.lblScoreTxt, "lblScoreTxt");
             this.lblScoreTxt.Name = "lblScoreTxt";
-            this.lblScoreTxt.Size = new System.Drawing.Size(127, 39);
-            this.lblScoreTxt.TabIndex = 1;
-            this.lblScoreTxt.Text = "Score: ";
             // 
             // lblScoreVal
             // 
-            this.lblScoreVal.AutoSize = true;
-            this.lblScoreVal.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblScoreVal.Location = new System.Drawing.Point(704, 94);
+            resources.ApplyResources(this.lblScoreVal, "lblScoreVal");
             this.lblScoreVal.Name = "lblScoreVal";
-            this.lblScoreVal.Size = new System.Drawing.Size(0, 37);
-            this.lblScoreVal.TabIndex = 2;
             // 
             // lblGameOver
             // 
-            this.lblGameOver.AutoSize = true;
-            this.lblGameOver.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblGameOver.Location = new System.Drawing.Point(24, 26);
+            resources.ApplyResources(this.lblGameOver, "lblGameOver");
             this.lblGameOver.Name = "lblGameOver";
-            this.lblGameOver.Size = new System.Drawing.Size(100, 37);
-            this.lblGameOver.TabIndex = 3;
-            this.lblGameOver.Text = "label1";
-            this.lblGameOver.Visible = false;
+            // 
+            // pbCanvas
+            // 
+            resources.ApplyResources(this.pbCanvas, "pbCanvas");
+            this.pbCanvas.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(50)))), ((int)(((byte)(50)))));
+            this.pbCanvas.Name = "pbCanvas";
+            this.pbCanvas.TabStop = false;
+            this.pbCanvas.Paint += new System.Windows.Forms.PaintEventHandler(this.pbCanvas_Paint);
             // 
             // frmSnake
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(880, 496);
             this.Controls.Add(this.lblGameOver);
             this.Controls.Add(this.lblScoreVal);
             this.Controls.Add(this.lblScoreTxt);
             this.Controls.Add(this.pbCanvas);
+            this.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.Name = "frmSnake";
-            this.Text = "frmSnake";
-            this.Load += new System.EventHandler(this.frmSnake_Load);
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.frmSnake_FormClosed);
+            this.Shown += new System.EventHandler(this.frmSnake_Shown);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmSnake_KeyDown);
-            this.KeyUp += new System.Windows.Forms.KeyEventHandler(this.frmSnake_KeyUp);
             ((System.ComponentModel.ISupportInitialize)(this.pbCanvas)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
